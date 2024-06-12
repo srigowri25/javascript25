@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.18;
+
+contract MyToken {
+
+    // Public variables here
+    string public tokenName = "EVM";
+    string public tokenAbbrv = "Course";
+    uint public totalSupply = 2;
+    
+    // Mapping variable here
+    mapping(address => uint) public money;
+    
+    // Mint function
+    function mint(address _address, uint _value) public {
+        totalSupply += _value;
+        money[_address] += _value;
+    }
+
+    // Burn function
+    function burn(address _address, uint _value) public{
+        require(money[_address] >= _value, "Insufficient balance to burn");
+        totalSupply -= _value;
+        money[_address] -= _value;
+    }
+}
